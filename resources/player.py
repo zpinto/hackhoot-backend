@@ -21,40 +21,22 @@ class PlayerCreator(Resource):
                         )
 
     def post(self):
+        # TODO: Implement player creation
         data = PlayerCreator.parser.parse_args()
+        '''
+        name: data['name']
+        game_id: data['game_id]
+        points: 0
+        '''
 
         # check to see that the given game Id exists
-        try:
-            game = mongo.db.games.find_one({"_id": ObjectId(data['game_id'])})
-        except:
-            return {'message': 'An error occured trying to look up this Game'}, 500
-
-        if not game:
-            return {'message': 'Game not found. game_id must be a Game that exists.'}, 404
-
-        if game['game_state'] != 'waiting':
-            return {'message': 'This Game is no longer allowing Players to join'}, 400
 
         # create the Player
-        try:
-            player_id = mongo.db.players.insert_one({
-                "name": data['name'],
-                "game_id": data['game_id'],
-                "points": 0,
-            }).inserted_id
-            player_created = mongo.db.players.find_one(
-                {"_id": player_id})
-        except:
-            return {'message': 'An error occured inserting the Player'}, 500
 
         # add the Player to the game
-        try:
-            mongo.db.games.update_one({"_id": ObjectId(data['game_id'])}, {
-                                      "$set": {"players": game['players'] + [str(player_id)]}})
-        except:
-            return {'message': 'An error occured trying to update this Game with the new Player'}, 500
+        # update your game
 
-        return json_util._json_convert(player_created), 201
+        return json_util._json_convert({}), 201
 
 class Player(Resource):
     parser = reqparse.RequestParser()

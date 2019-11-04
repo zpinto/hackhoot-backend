@@ -50,13 +50,10 @@ class GameCreator(Resource):
 class Game(Resource):
 
     def get(self, id):
-        try:
-            game = mongo.db.games.find_one({"_id": ObjectId(id)})
-        except:
-            return {'message': 'An error occured trying to look up this Game'}, 500
-
+        # TODO: Get game from MongoDb
+        game = {}
         if game:
-            return json_util._json_convert(game), 200
+            return json_util._json_convert({}), 200
         return {'message': 'Game not found'}, 404
 
     # this move the game to the next question
