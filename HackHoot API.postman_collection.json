@@ -80,6 +80,57 @@
 			"response": []
 		},
 		{
+			"name": "/creategame",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"time_limit\": 30\n}"
+				},
+				"url": {
+					"raw": "{{url}}/creategame",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"creategame"
+					]
+				},
+				"description": "Creates a game instance"
+			},
+			"response": []
+		},
+		{
+			"name": "/game/<string:id>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/game/5da2d46f80a35099c77febff",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"game",
+						"5da2d46f80a35099c77febff"
+					]
+				},
+				"description": "Gets the game based on the given id"
+			},
+			"response": []
+		},
+		{
 			"name": "/game/<string:id>",
 			"request": {
 				"method": "DELETE",
@@ -128,6 +179,34 @@
 					]
 				},
 				"description": "Increases the cur_question by 1 and changes times associated with the timer."
+			},
+			"response": []
+		},
+		{
+			"name": "/createplayer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"game_id\": \"5da2d46f80a35099c77febff\",\n\t\"name\": \"Zach\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/createplayer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createplayer"
+					]
+				},
+				"description": "Creates a Player under a certain Game"
 			},
 			"response": []
 		},
